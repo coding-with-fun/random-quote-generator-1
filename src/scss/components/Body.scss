@@ -36,11 +36,59 @@
         display: flex;
         justify-content: space-between;
         margin: auto;
-        width: 100px;
+        width: 200px;
 
-        .prev__btn,
-        .next__btn {
+        button {
+          border: none;
+          background: #0c65d6;
+          color: #ffffff;
+          border-radius: 6px;
+          padding: 10px 20px;
+          box-shadow: 0px 0px 0px transparent;
+          text-shadow: 0px 0px 0px transparent;
           cursor: pointer;
+        }
+
+        button:disabled {
+          background: #92bbf4;
+          cursor: no-drop;
+        }
+
+        button:hover {
+          background: #0c65d6;
+          box-shadow: 0px 0px 0px transparent;
+          border: 0px solid transparent;
+          text-shadow: 0px 0px 0px transparent;
+        }
+
+        button:hover:disabled {
+          background: #92bbf4;
+          cursor: no-drop;
+        }
+
+        button:active {
+          outline: none;
+          border: none;
+          background: #92bbf4;
+        }
+
+        button:focus {
+          outline: 0;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .quote__body {
+    .quote__container {
+      .quote {
+        min-height: 300px;
+        max-height: fit-content;
+
+        .content {
+          margin-bottom: 10px;
         }
       }
     }

@@ -10,14 +10,6 @@ const Body = () => {
   });
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const getNext = () => {
-    setCurrentIndex(currentIndex + 1);
-  };
-
-  const getPrev = () => {
-    setCurrentIndex(currentIndex - 1);
-  };
-
   useEffect(() => {
     if (currentIndex === quoteData.length - 1) {
       RandomQuote();
@@ -36,22 +28,21 @@ const Body = () => {
         </div>
         <div className="nav__container">
           <div className="nav__btn">
-            <div
-              className="prev__btn"
+            <button
+              disabled={currentIndex === 0 ? true : false}
               onClick={() => {
-                getPrev();
+                setCurrentIndex(currentIndex - 1);
               }}
             >
               Prev
-            </div>
-            <div
-              className="next__btn"
+            </button>
+            <button
               onClick={() => {
-                getNext();
+                setCurrentIndex(currentIndex + 1);
               }}
             >
               Next
-            </div>
+            </button>
           </div>
         </div>
       </div>

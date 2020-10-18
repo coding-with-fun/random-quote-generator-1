@@ -5,8 +5,8 @@ export const QuotesContext = createContext();
 
 export const QuotesProvider = (props) => {
   const [quoteData, setQuoteData] = useState([]);
-  const [skip, setSkip] = useState(0);
-  const limit = 2;
+  const [skip, setSkip] = useState(localStorage.getItem("skip") || 0);
+  const limit = 10;
 
   useEffect(() => {
     RandomQuote();
@@ -17,6 +17,7 @@ export const QuotesProvider = (props) => {
       .then((response) => {
         setQuoteData((quote) => [...quote, ...response.data.results]);
         setSkip(skip + limit);
+        localStorage.setItem("skip", skip);
       })
       .catch((error) => console.error(error));
   };
