@@ -1,9 +1,10 @@
 import React from "react";
+import Body from "./components/Body";
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!!</h1>
+    <div className="body__container">
+      <Body />
     </div>
   );
 }
