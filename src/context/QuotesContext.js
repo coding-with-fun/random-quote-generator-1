@@ -10,13 +10,17 @@ export const QuotesProvider = (props) => {
 
   useEffect(() => {
     RandomQuote();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const RandomQuote = () => {
     fetchRandomQuote(limit, skip)
       .then((response) => {
         setQuoteData((quote) => [...quote, ...response.data.results]);
-        setSkip(skip + limit);
+        setSkip(parseInt(skip, 10) + parseInt(limit, 10));
+        if (skip > 1995) {
+          setSkip(0);
+        }
         localStorage.setItem("skip", skip);
       })
       .catch((error) => console.error(error));

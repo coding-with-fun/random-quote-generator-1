@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { QuotesContext } from "../context/QuotesContext";
 
 const Body = () => {
@@ -15,16 +15,25 @@ const Body = () => {
       RandomQuote();
     }
     quoteData[currentIndex] && setCurrentQuote(quoteData[currentIndex]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quoteData, currentIndex]);
 
   return (
     <div className="quote__body">
       <div className="quote__container">
         <div className="quote">
-          <div className="content">{currentQuote.content}</div>
-          <div className="author">
-            <cite>{currentQuote.author}</cite>
-          </div>
+          {currentQuote.content === "" ? (
+            <div className="loader__container">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            <Fragment>
+              <div className="content">{currentQuote.content}</div>
+              <div className="author">
+                <cite>{currentQuote.author}</cite>
+              </div>
+            </Fragment>
+          )}
         </div>
         <div className="nav__container">
           <div className="nav__btn">
@@ -37,6 +46,7 @@ const Body = () => {
               Prev
             </button>
             <button
+              disabled={!quoteData[currentIndex + 1]?.content ? true : false}
               onClick={() => {
                 setCurrentIndex(currentIndex + 1);
               }}
